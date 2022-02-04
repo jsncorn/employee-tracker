@@ -103,80 +103,80 @@ function runPrompt() {
                     break;
                 case 'Add Role':
                     inquirer
-                    .prompt([
-                        {
-                            name: 'title',
-                            type: 'input',
-                            message: 'What role would you like to add?',
-                            allowNull: false,
-                        },
-                        {
-                            name: 'salary',
-                            type: 'input',
-                            message: 'Please enter a salary',
-                            allowNull: false,
-                            validate: {
-                                isNumeric: true
+                        .prompt([
+                            {
+                                name: 'title',
+                                type: 'input',
+                                message: 'What role would you like to add?',
+                                allowNull: false,
+                            },
+                            {
+                                name: 'salary',
+                                type: 'input',
+                                message: 'Please enter a salary',
+                                allowNull: false,
+                                validate: {
+                                    isNumeric: true
+                                }
+                            },
+                            {
+                                name: 'department_id',
+                                type: 'input',
+                                message: 'Please enter department ID'
                             }
-                        },
-                        {
-                            name: 'department_id',
-                            type: 'input',
-                            message: 'Please enter department ID'
-                        }
-                    ]).then(ans => {
-                        addRole(ans.title, ans.salary, ans.department_id);
-                        runPrompt();
-                    });
+                        ]).then(ans => {
+                            addRole(ans.title, ans.salary, ans.department_id);
+                            runPrompt();
+                        });
                     break;
                 case 'Remove Employee':
                     inquirer
-                    .prompt([
-                        {
-                            name: 'id',
-                            type: 'input',
-                            messsage: 'Enter employee ID'
-                        }
-                    ]).then(ans => {
-                        removeEmployee(ans.id);
-                        runPrompt();
-                    })
+                        .prompt([
+                            {
+                                name: 'id',
+                                type: 'input',
+                                messsage: 'Enter employee ID'
+                            }
+                        ]).then(ans => {
+                            removeEmployee(ans.id);
+                            runPrompt();
+                        })
                     break;
                 case 'Update employee role':
                     inquirer
-                    .prompt([
-                        {
-                            name: 'eID',
-                            type: 'input',
-                            message: 'Enter employee ID'
-                        },
-                        {
-                            name: 'roleID',
-                            type: 'input',
-                            message: 'Enter role ID'
-                        }
-                    ]).then(ans => {
-                        roleUpdate(ans.eID, ans.roleID);
-                        runPrompt();
-                    });
+                        .prompt([
+                            {
+                                name: 'eID',
+                                type: 'input',
+                                message: 'Enter employee ID'
+                            },
+                            {
+                                name: 'roleID',
+                                type: 'input',
+                                message: 'Enter role ID'
+                            }
+                        ]).then(ans => {
+                            roleUpdate(ans.eID, ans.roleID);
+                            runPrompt();
+                        });
                     break;
                 case 'Update employee manager':
                     inquirer
-                    .prompt([
-                        {
-                            name: 'manager',
-                            type: 'input',
-                            message: 'Enter manager ID'
-                        },
-                        {
-                            name: 'employee',
-                            type: 'input',
-                            message: 'Enter employee ID'
-                        }
-                    ]).then(ans => {
-                        managerUpdate(ans.manager, ans.employee);
-                        runPrompt();
-                    });
+                        .prompt([
+                            {
+                                name: 'manager',
+                                type: 'input',
+                                message: 'Enter manager ID'
+                            },
+                            {
+                                name: 'employee',
+                                type: 'input',
+                                message: 'Enter employee ID'
+                            }
+                        ]).then(ans => {
+                            managerUpdate(ans.manager, ans.employee);
+                            runPrompt();
+                        });
                     break;
             }
 
@@ -210,7 +210,7 @@ function addDepartment(department) {
 
 function addRole(title, salary, department_id) {
     const role = connection.query(
-        "INSERT INTO role SET title = ?, salary = ?, department_id = ?", 
+        "INSERT INTO role SET title = ?, salary = ?, department_id = ?",
         [title, salary, department_id]
     )
 }
