@@ -41,4 +41,15 @@ function runPrompt() {
             'Update employee manager'
         ]
     })
+    .then(answers => {
+        switch(answers.action) {
+            case 'View employees':
+                getEmployees();
+                runPrompt();
+        }
+    });
+}
+
+function getEmployees() {
+    const results = connection.query("SELECT employee.id, employee.fname, employee.lname, role.title, department.name AS department, role.salary, CONCAT(manager.fname, ' ', manager.lname) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department on role.department_id = department.id LEFT JOIN employee manager on manager.id = employee.manager_id;");
 }
