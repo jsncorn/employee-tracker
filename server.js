@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+const sequelize = require('sequilize');
 
 
 const connection = mysql.createConnection({
@@ -54,6 +55,37 @@ function runPrompt() {
             case 'View employees by manager':
                 getEmployeesByManager();
                 runPrompt();
+                break;
+            case 'Add employee':
+                inquirer
+                .prompt([
+                    {
+                        name: 'eFirst',
+                        type: 'input',
+                        message: 'What is the employee name?',
+                        allowNull: false
+                    },
+                    {
+                        name: 'eLast',
+                        type: 'input',
+                        message: 'What is the employee last name?',
+                        allowNull: false
+                    },
+                    {
+                        name: 'eDepartment',
+                        type: 'input',
+                        message: 'What is the employee department?',
+                        allowNull: false
+                    },
+                    {
+                        name: 'eManager',
+                        type: 'input',
+                        message: 'Who is the manager by ID?',
+                        allowNull: false
+                    }
+                ]).then(ans => {
+                    addEmployees(ans.eFirst, ans.eLast, ans.eDepartment, ans.eManager);
+                });
                 break;
         }
         
