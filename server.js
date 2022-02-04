@@ -71,3 +71,10 @@ function getEmployeesByDepartment() {
 function getEmployeesByManager() {
     const manager = connection.query("SELECT employee.id, employee.fname, employee.lname, department.name, employee.manager_id AS department, role.title FROM employee LEFT JOIN role on role.id = employee.role_id LEFT JOIN department ON department.id = role.department_id WHERE manager_id;");
 }
+
+function addEmployees(eFirst, eLast, eDepartment, eManager) {
+    const add = connection.query(
+        "INSERT INTO employee SET fname = ?, lname = ?, role_id = ?, manager_id = ?",
+        [eFirst, eLast, eDepartment, eManager]
+    )
+}
