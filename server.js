@@ -51,6 +51,10 @@ function runPrompt() {
                 getEmployeesByDepartment();
                 runPrompt();
                 break;
+            case 'View employees by manager':
+                getEmployeesByManager();
+                runPrompt();
+                break;
         }
         
     });
@@ -64,4 +68,6 @@ function getEmployeesByDepartment() {
     const dept = connection.query("SELECT employee.id, employee.fname, employee.lname, department.name FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department department on role.department_id = department.id WHERE department.id;");
 }
 
-function getEmployeesByManager() {}
+function getEmployeesByManager() {
+    const manager = connection.query("SELECT employee.id, employee.fname, employee.lname, department.name, employee.manager_id AS department, role.title FROM employee LEFT JOIN role on role.id = employee.role_id LEFT JOIN department ON department.id = role.department_id WHERE manager_id;");
+}
