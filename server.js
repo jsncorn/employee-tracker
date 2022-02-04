@@ -228,3 +228,10 @@ function roleUpdate(eID, roleID) {
         [roleID, eID]
     )
 }
+
+function managerUpdate(manager, employee) {
+    const managerupdate = connection.query(
+        "UPDATE employee SET manager_id = ? WHERE id = ?",
+        [manager, employee]
+    )
+}
