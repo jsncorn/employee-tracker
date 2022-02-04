@@ -101,6 +101,47 @@ function runPrompt() {
                             runPrompt();
                         });
                     break;
+                case 'Add Role':
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'title',
+                            type: 'input',
+                            message: 'What role would you like to add?',
+                            allowNull: false,
+                        },
+                        {
+                            name: 'salary',
+                            type: 'input',
+                            message: 'Please enter a salary',
+                            allowNull: false,
+                            validate: {
+                                isNumeric: true
+                            }
+                        },
+                        {
+                            name: 'department_id',
+                            type: 'input',
+                            message: 'Please enter department ID'
+                        }
+                    ]).then(ans => {
+                        addRole(ans.title, ans.salary, ans.department_id);
+                        runPrompt();
+                    });
+                    break;
+                case 'Remove Employee':
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'id',
+                            type: 'input',
+                            messsage: 'Enter employee ID'
+                        }
+                    ]).then(ans => {
+                        removeEmployee(ans.id);
+                        runPrompt();
+                    })
+                    break;
             }
 
         });
@@ -129,4 +170,18 @@ function addDepartment(department) {
     const department = connection.query(
         "INSERT INTO department SET name = ?", [department]
     )
+}
+
+function addRole(title, salary, department_id) {
+    const role = connection.query(
+        "INSERT INTO role SET title = ?, salary = ?, department_id = ?", 
+        [title, salary, department_id]
+    )
+}
+
+function removeEmployee(id) {
+    var remove = connection.query(
+        "DELETE FROM employee WHERE id = ?", [id]
+    )
+    getEmployees();
 }
