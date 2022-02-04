@@ -142,6 +142,23 @@ function runPrompt() {
                         runPrompt();
                     })
                     break;
+                case 'Update employee role':
+                    inquirer
+                    .prompt([
+                        {
+                            name: 'eID',
+                            type: 'input',
+                            message: 'Enter employee ID'
+                        },
+                        {
+                            name: 'roleID',
+                            type: 'input',
+                            message: 'Enter role ID'
+                        }
+                    ]).then(ans => {
+                        roleUpdate(ans.eID, ans.roleID);
+                        runPrompt();
+                    })
             }
 
         });
