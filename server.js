@@ -158,6 +158,7 @@ function runPrompt() {
                     ]).then(ans => {
                         roleUpdate(ans.eID, ans.roleID);
                         runPrompt();
+                        break;
                     })
             }
 
@@ -197,8 +198,15 @@ function addRole(title, salary, department_id) {
 }
 
 function removeEmployee(id) {
-    var remove = connection.query(
+    const remove = connection.query(
         "DELETE FROM employee WHERE id = ?", [id]
     )
     getEmployees();
+}
+
+function roleUpdate(eID, roleID) {
+    const role = connection.query(
+        "UPDATE employee SET role_id = ? WHERE id = ?",
+        [roleID, eID]
+    )
 }
