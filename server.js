@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
 });
 
 connection.connect((err) => {
-    if(err) {
+    if (err) {
         console.log(err);
         res.status(500);
     }
@@ -26,70 +26,84 @@ connection.query = util.promisify(connection.query);
 
 function runPrompt() {
     inquirer
-    .prompt({
-        name: 'action',
-        type: 'list',
-        message: 'What do you want to do?',
-        choiches: [
-            'View employees',
-            'View employees by department',
-            'View employees by manager',
-            'Add employee',
-            'Add department',
-            'Add role',
-            'Remove employee',
-            'Update employee role',
-            'Update employee manager'
-        ]
-    })
-    .then(answers => {
-        switch(answers.action) {
-            case 'View employees':
-                getEmployees();
-                runPrompt();
-                break;
-            case 'View employees by department':
-                getEmployeesByDepartment();
-                runPrompt();
-                break;
-            case 'View employees by manager':
-                getEmployeesByManager();
-                runPrompt();
-                break;
-            case 'Add employee':
-                inquirer
-                .prompt([
-                    {
-                        name: 'eFirst',
-                        type: 'input',
-                        message: 'What is the employee name?',
-                        allowNull: false
-                    },
-                    {
-                        name: 'eLast',
-                        type: 'input',
-                        message: 'What is the employee last name?',
-                        allowNull: false
-                    },
-                    {
-                        name: 'eDepartment',
-                        type: 'input',
-                        message: 'What is the employee department?',
-                        allowNull: false
-                    },
-                    {
-                        name: 'eManager',
-                        type: 'input',
-                        message: 'Who is the manager by ID?',
-                        allowNull: false
-                    }
-                ]).then(ans => {
-                    addEmployees(ans.eFirst, ans.eLast, ans.eDepartment, ans.eManager);
-                });
-                break;
-        }
-        
-    });
+        .prompt({
+            name: 'action',
+            type: 'list',
+            message: 'What do you want to do?',
+            choiches: [
+                'View employees',
+                'View employees by department',
+                'View employees by manager',
+                'Add employee',
+                'Add department',
+                'Add role',
+                'Remove employee',
+                'Update employee role',
+                'Update employee manager'
+            ]
+        })
+        .then(answers => {
+            switch (answers.action) {
+                case 'View employees':
+                    getEmployees();
+                    runPrompt();
+                    break;
+                case 'View employees by department':
+                    getEmployeesByDepartment();
+                    runPrompt();
+                    break;
+                case 'View employees by manager':
+                    getEmployeesByManager();
+                    runPrompt();
+                    break;
+                case 'Add employee':
+                    inquirer
+                        .prompt([
+                            {
+                                name: 'eFirst',
+                                type: 'input',
+                                message: 'What is the employee name?',
+                                allowNull: false
+                            },
+                            {
+                                name: 'eLast',
+                                type: 'input',
+                                message: 'What is the employee last name?',
+                                allowNull: false
+                            },
+                            {
+                                name: 'eDepartment',
+                                type: 'input',
+                                message: 'What is the employee department?',
+                                allowNull: false
+                            },
+                            {
+                                name: 'eManager',
+                                type: 'input',
+                                message: 'Who is the manager by ID?',
+                                allowNull: false
+                            }
+                        ]).then(ans => {
+                            addEmployees(ans.eFirst, ans.eLast, ans.eDepartment, ans.eManager);
+                        });
+                    break;
+                case 'Add Department':
+                    inquirer
+                        .prompt([
+                            {
+                                name: 'department',
+                                type: 'input',
+                                message: 'What department would you like to add?',
+                                allowNull: false,
+                            }
+                        ]).then(ans => {
+                            addDepartment(ans.department);
+                            runPrompt();
+                        });
+                    break;
+            }
+
+        });
 }
 
 function getEmployees() {
