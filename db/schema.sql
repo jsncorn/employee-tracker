@@ -14,3 +14,13 @@ CREATE TABLE role (
     department_id INT NOT NULL,
     FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
 );
+
+CREATE TABLE employee (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    fname VARCHAR(40) NOT NULL,
+    lname VARCHAR(40) NOT NULL,
+    role_id INT NOT NULL,
+    manager_id INT,
+    FOREIGN KEY (role_id) REFERENCES role(id),
+    FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE CASCADE
+);
