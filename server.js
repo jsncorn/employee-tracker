@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-const sequelize = require('sequilize');
+const sequelize = require('sequelize');
 
 
 const connection = mysql.createConnection({
@@ -203,7 +203,7 @@ function addEmployees(eFirst, eLast, eDepartment, eManager) {
 }
 
 function addDepartment(department) {
-    const department = connection.query(
+    const addDepartment = connection.query(
         "INSERT INTO department SET name = ?", [department]
     )
 }
