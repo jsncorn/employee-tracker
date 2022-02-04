@@ -124,3 +124,9 @@ function addEmployees(eFirst, eLast, eDepartment, eManager) {
         [eFirst, eLast, eDepartment, eManager]
     )
 }
+
+function addDepartment(department) {
+    const department = connection.query(
+        "INSERT INTO department SET name = ?", [department]
+    )
+}
