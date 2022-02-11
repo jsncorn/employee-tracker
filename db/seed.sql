@@ -7,6 +7,7 @@ VALUES
 ('Engineering'),
 ('Finance'),
 ('Legal');
+SELECT * FROM department;
 
 -- ROLE SEED
 INSERT INTO role(tile, salary, department_id)
@@ -19,7 +20,7 @@ VALUES
 ('Accountant', 125000, 3),
 ('Legal Team Lead', 250000, 4),
 ('Lawyer', 190000, 4);
-
+SELECT * FROM role;
 -- EMPLOYEE SEED
 INSERT INTO employee(fname, lname, role_id, manager_id)
 VALUES 
@@ -31,3 +32,5 @@ VALUES
 ('Malia', 'Brown', 6, 5),
 ('Sarah', 'Lourd', 7, NULL),
 ('Tom', 'Allen', 8, 7),
+
+SELECT * from employee;
