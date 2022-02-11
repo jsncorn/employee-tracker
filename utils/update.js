@@ -1,4 +1,4 @@
-const inquirer = require('require');
+const inquirer = require('inquirer');
 
 function removeEmployee(connection, callback) {
     connection.query("SELECT * FROM employee", function (err, res) {

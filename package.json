@@ -21,6 +21,7 @@
   "dependencies": {
     "inquirer": "^8.2.0",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.15.0"
+    "sequelize": "^6.15.0",
+    "utils": "^0.3.1"
   }
 }
