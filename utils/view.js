@@ -36,7 +36,7 @@ function viewEmployeeDepartment(connection, callback) {
 }
 
 function viewEmployeeManager(connection, callback) {
-    connection.query("SELECT DISTINCT e2.first_name, e2.last_name FROM employee LEFT JOIN employee AS e2 ON employee.manager_id = e2.id WHERE e2.first_name IS NOT NULL", function (err, results) {
+    connection.query("SELECT DISTINCT e2.first_name, e2.last_name FROM employee LEFT JOIN employee AS e2 ON employee.manager_id = e2.id WHERE e2.first_name IS NOT NULL", function (err, res) {
         if(err) throw err;
         inquirer.prompt([
             {
@@ -49,7 +49,7 @@ function viewEmployeeManager(connection, callback) {
                     }
                     return choiceArr;
                 },
-                message: "Search by what maanger?"
+                message: "Search by what manager?"
             }
         ]).then(function (ans) {
             console.log(ans.manager);
