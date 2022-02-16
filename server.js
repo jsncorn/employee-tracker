@@ -48,7 +48,7 @@ function runPrompt() {
             case 'View all employees by department':
                 view.viewEmployeeDepartment(connection, runPrompt);
                 break;
-            case 'View all employee by manager':
+            case 'View all employees by manager':
                 view.viewEmployeeManager(connection, runPrompt);
                 break;
             case 'Add employee':
@@ -60,7 +60,7 @@ function runPrompt() {
             case 'Update employee manager':
                 update.updateManager(connection, runPrompt);
                 break;
-            case 'Remove employee':
+            case 'Remove Employee':
                 update.removeEmployee(connection, runPrompt);
                 break;
             case 'View all roles': 
@@ -78,7 +78,7 @@ function runPrompt() {
             case 'Add department':
                 add.addDepartment(connection, runPrompt);
                 break;
-            case 'Remove department':
+            case 'Remove Department':
                 update.removeDepartment(connection, runPrompt);
                 break;
         }

@@ -11,8 +11,9 @@ function addEmployee(connection, callback) {
                 message: "What is the employee's first name?",
                 validate: function (ans) {
                     if (ans.length === 0) {
-                        console.log('Please enter a valid name')
+                        console.log('Please enter a valid name');
                     }
+                    return true;
                 }
             },
             {
@@ -23,6 +24,7 @@ function addEmployee(connection, callback) {
                     if (ans.length === 0) {
                         console.log('Please enter a valid name')
                     }
+                    return true;
                 }
             },
             {
@@ -30,7 +32,7 @@ function addEmployee(connection, callback) {
                 name: 'role',
                 choices: function () {
                     let choiceArr = [];
-                    for (var i = 0; i < restoreDefaultPrompts.length; i++) {
+                    for (var i = 0; i < res.length; i++) {
                         choiceArr.push(res[i].title)
                     }
                     return choiceArr;
@@ -69,7 +71,7 @@ function addEmployee(connection, callback) {
                                     newEmployee.manager_id = res[0].id;
                                     console.dir('Employee being added');
 
-                                    connection.query("INSERT INTO employee SET ?", newEmplyoee, function (err, res) {
+                                    connection.query("INSERT INTO employee SET ?", newEmployee, function (err, res) {
                                         if (err) throw err;
                                         console.dir('Employee successfully added');
                                         callback();
@@ -154,7 +156,7 @@ function addDepartment(connection, callback) {
             }
         }
     ]).then(function (ans) {
-        connection.query("INSERT INTO department (name) VALUES (?)", answer.dept_name, function(err, res) {
+        connection.query("INSERT INTO department (name) VALUES (?)", ans.dept_name, function(err, res) {
             if(err) throw err;
             console.log('Department added successfully')
             callback();

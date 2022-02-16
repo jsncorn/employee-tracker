@@ -52,7 +52,7 @@ function viewEmployeeManager(connection, callback) {
                 message: "Search by what manager?"
             }
         ]).then(function (ans) {
-            console.log(ans.manager);
+            console.log(ans.manager);            
             connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name AS department, e2.first_name AS manager FROM employee LEFT JOIN employee AS e2 ON e2.id = employee.manager_id JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id WHERE e2.first_name = ? ORDER BY employee.id;", ans.manager, function(err, res) {
                 if (err) throw err;
                 console.table(res);
@@ -70,7 +70,7 @@ function viewRoles(connection, callback) {
     })
 }
 function viewDepartments(connection, callback) {
-    connection.query("SELECT * FROM departments", function(err, res) {
+    connection.query("SELECT * FROM department", function(err, res) {
         if (err) throw err;
         console.table(res);
         callback();

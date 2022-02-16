@@ -128,7 +128,7 @@ function updateManager(connection, callback) {
                 inquirer.prompt([
                     {
                         type: 'list',
-                        name: 'updateManager',
+                        name: "updateManager",
                         choices: function () {
                             let choiceArr = [];
                             for (var i = 0; i < res.length; i++) {
@@ -140,7 +140,7 @@ function updateManager(connection, callback) {
                         message: "What manager will the employee have?"
                     }
                 ]).then(function (ans) {
-                    connection.query("SELECT * employee WHERE first_name = ?", ans.updateManager, function (err, res) {
+                    connection.query("SELECT * FROM employee WHERE first_name = ?", ans.updateManager, function (err, res) {
                         if (err) throw err;
                         newManager.manager_id = res[0].id;
                         connection.query("UPDATE employee SET manager_id = ? WHERE first_name = ?", [newManager.manager_id, newManager.first_name], function (err, res) {
