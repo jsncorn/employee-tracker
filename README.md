@@ -4,10 +4,14 @@
   
   Check out the badges hosted by [shields.io](https://shields.io/).
   
-  ![DEMO VIDEO](https://github.com/jsncorn/employee-tracker/blob/main/assets/2022-02-10%2023-01-02_Trim.mp4)
+
   ## Description 
   
   A Node.js command line interface that allows employers to view a database of their employees and associated roles using the Inquirer node module. It allows removing, adding, and updating each employee individually.
+
+
+https://user-images.githubusercontent.com/77278027/155062802-a296bacb-ab4e-44a3-b4a5-e835afb7aaca.mp4
+
 
   ## Table of Contents
   * [Installation](#installation)
